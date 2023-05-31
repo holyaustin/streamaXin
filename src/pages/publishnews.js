@@ -3,8 +3,8 @@ import { ThemeProvider } from 'theme-ui';
 import theme from '../theme';
 import SEO from '../components/seo';
 import Layout from '../components/layout2';
-// import Mintfile from '../components/Mintfile';
-import Web3ui from '../components/Web3ui';
+import Mintfile from '../components/Mintfile';
+//import Web3ui from '../components/Web3ui';
 
 export default function PublishNews() {
   return (
@@ -14,7 +14,7 @@ export default function PublishNews() {
           title="Add new file"
           description="add a new file"
         />
-        <Web3ui />
+        <Mintfile  />
 
       </Layout>
     </ThemeProvider>

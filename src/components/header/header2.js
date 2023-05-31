@@ -57,13 +57,7 @@ export default function Header() {
         >
           <Container sx={styles.container}>
           <Image src="/images/logoonly.png" loading="lazy" sx={styles.logo} alt="logo" />
-{/**
-          <Navbar2
-              isSticky={state.isSticky}
-              isMobile={state.isMobileMenu}
-              handleCloseMenu={handleCloseMenu}
-            />
- */}
+
 
           <div 
           sx={styles.navbar}
@@ -85,18 +79,10 @@ export default function Header() {
           <Link href="/videoplayer">
           <a> Video-Player</a>
           </Link>
-          <Link href="https://web3chat-kezayya.vercel.app/" target="_blank">
-          <a target="_blank">Chat </a>
+          <Link href="https://streamagenic-meeting.vercel.app/" target="_blank">
+          <a target="_blank">Video-Meeting </a>
           </Link>
-          
-{/**
-          <Link href="/addfolder">
-          <a>Video Marketplace</a>
-          </Link>
-          <Link href="/analytics">
-          <a>Analytics</a>
-          </Link>
-  */}         
+        
           </div> 
 
             <Flex sx={styles.buttonGroup}>

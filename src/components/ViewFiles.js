@@ -49,10 +49,11 @@ export default function ViewFiles() {
     const items = await Promise.all(data.map(async i => {
       const tokenUri = await contract.tokenURI(i.tokenId);
       console.log("token Uri is ", tokenUri);
-      const httpUri = tokenUri;
+      const httpUri = getIPFSGatewayURL(tokenUri);
       console.log("Http Uri is ", httpUri);
-      const meta = await axios.get(tokenUri);
+      const meta = await axios.get(httpUri);
 
+      const image = getIPFSGatewayURL(meta.data.image);
       const filename = i.fileName;
       console.log("Filename is ", filename);
       const created = new Date((i.dateCreated).toNumber() * 1000).toLocaleDateString();
@@ -64,12 +65,12 @@ export default function ViewFiles() {
 
       const item = {
         tokenId: i.tokenId.toNumber(),
-        image: httpUri,
+        image: image,
         name: filename,
         created: created,
         description: description,
         size: filesize,
-        sharelink: httpUri,
+        sharelink: getIPFSGatewayURL(meta.data.image),
       };
       console.log("item returned is ", item);
       return item;
@@ -110,6 +111,13 @@ export default function ViewFiles() {
     );
   };
 
+  const getIPFSGatewayURL = (ipfsURL) => {
+    const urlArray = ipfsURL.split("/");
+    console.log("urlArray = ", urlArray);
+    const ipfsGateWayURL = `https://${urlArray[2]}.ipfs.nftstorage.link/${urlArray[3]}`;
+    console.log("ipfsGateWayURL = ", ipfsGateWayURL)
+    return ipfsGateWayURL;
+  };
 
   if (loadingState === "loaded" && !nfts.length) {
     return (
@@ -169,7 +177,7 @@ export default function ViewFiles() {
               <div className="p-2 bg-black">
               <Popup trigger={<button type="button" className="w-full bg-purple-700 text-white font-bold py-2 px-2 rounded" >Get Share Link</button>} 
                   position="bottom left">
-                <div className=" bg-blue-200 text-black font-bold py-2 px-2 rounded">{nft.sharelink}</div>
+                <div className=" bg-blue-200 text-black font-bold py-2 px-2 w-full rounded">{nft.sharelink}</div>
                 <button onClick={() => copyToClipBoard([nft.sharelink])}>Copy Link</button>
                 
                  {copySuccess}

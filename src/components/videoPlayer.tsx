@@ -5,7 +5,7 @@ import styles from "../styles/VideoPlayer.module.css"
 
 export default function VideoPlayer() {
   // Set the state to get either the playback URL or playback ID
-  const [playbackSource, setPlaybackSource] = useState<string>('');
+  const [playbackSource, setPlaybackSource] = useState<string>('https://live-par-1-abr-cdn.livepush.io/live_abr_cdn/emaIqCGoZw-6/index.m3u8');
 
   // Quick verifiation to check if url provided is a playback url
   const playbackurl = '.m3u8';
@@ -36,7 +36,7 @@ export default function VideoPlayer() {
         />
       ) : (
         <Player
-          playbackId={playbackSource}
+          playbackId={''}
           autoPlay={true}
           loop
           muted

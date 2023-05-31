@@ -15,18 +15,5 @@ export default [
     path: 'faq',
     label: 'Faq',
   },
-  {/**
-  {
-    path: 'pricing',
-    label: 'Pricing',
-  },
-  {
-    path: 'testimonials',
-    label: 'Testimonials',
-  },
-  {
-    path: 'blog',
-    label: 'Blog',
-  },
- */}
+
 ];

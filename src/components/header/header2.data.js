@@ -20,8 +20,8 @@ export default [
     label: 'Video-Player',
   },
   {
-    path: 'https://web3chat-kezayya.vercel.app/',
-    label: 'Chat',
+    path: 'https://streamagenic-meeting.vercel.app/',
+    label: 'Video-Meeting',
   },
 
 

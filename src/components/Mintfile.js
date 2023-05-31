@@ -19,6 +19,10 @@ const APIKEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDA
 
 const MintFile = () => {
   const navigate = useRouter();
+  const [file, setFile] = useState(null);
+  const [fileSize, setFileSize] = useState('')
+  const [fileName, setFileName] = useState('')
+  const [desc, setDesc] = useState('')
   const [errorMessage, setErrorMessage] = useState(null);
   const [uploadedFile, setUploadedFile] = useState();
   const [imageView, setImageView] = useState();
@@ -37,20 +41,38 @@ const MintFile = () => {
   };
 
   const uploadNFTContent = async (inputFile) => {
-    const { name } = formInput;
-    if (!name || !inputFile) return;
+    //const { name } = formInput;
+    const { description } = formInput;
+    if (! description || !inputFile) return;
+
     const nftStorage = new NFTStorage({ token: APIKEY, });
     try {
+
       console.log("Trying to upload file to ipfs");
-      setTxStatus("Uploading Item to IPFS & Filecoin via NFT.storage.");
+      setTxStatus("Uploading Item to decentralized storage.");
       console.log("close to metadata");
       const metaData = await nftStorage.store({
-        name,
-        description: name,
+        name: inputFile.name,
+        description: description,
         image: inputFile,
       });
       setMetaDataURl(metaData.url);
       console.log("metadata is: ", { metaData });
+
+      console.log("description is:", description);
+      setDesc(description);
+  
+      console.log("File Name is:", inputFile.name);
+      setFileName(inputFile.name)
+  
+      console.log("File Size is:", inputFile.size);
+      setFileSize(inputFile.size)
+  
+      console.log("About to upload file", inputFile)
+      setFile(inputFile.size)
+  
+      console.log("Usestate Initialized>>>>>>>>>")
+
       return metaData;
     } catch (error) {
       setErrorMessage("Could store file to NFT.Storage - Aborted file upload.");
@@ -60,7 +82,12 @@ const MintFile = () => {
 
   const sendTxToBlockchain = async (metadata) => {
     try {
-      setTxStatus("Adding transaction to Polygon Mumbai..");
+      setTxStatus("Adding transaction to XDC Apothem Blockchain..");
+      console.log("Adding transaction to  XDC Apothem Blockchain..");
+      const file_descrip = metadata.data.description;
+      const file_name =  metadata.data.name;
+      const file_size = uploadedFile.size;
+
       const web3Modal = new Web3Modal();
       const connection = await web3Modal.connect();
       const provider = new ethers.providers.Web3Provider(connection);
@@ -71,12 +98,13 @@ const MintFile = () => {
       console.log("Connected to contract", fileShareAddress);
       console.log("IPFS blockchain uri is ", metadata.url);
 
-      const mintNFTTx = await connectedContract.createFile(metadata.url);
+      //const mintNFTTx = await connectedContract.createFile(metadata.url);
+      const mintNFTTx = await connectedContract.createFile(metadata.url, file_name, file_descrip, file_size);
       console.log("File successfully created and added to Blockchain");
       await mintNFTTx.wait();
       return mintNFTTx;
     } catch (error) {
-      setErrorMessage("Failed to send tx to Mumbai.");
+      setErrorMessage("Failed to send tx to Apothem.");
       console.log(error);
     }
   };
@@ -87,7 +115,7 @@ const MintFile = () => {
     console.log("image ipfs path is", imgViewString);
     setImageView(imgViewString);
     setMetaDataURl(getIPFSGatewayURL(metaData.url));
-    setTxURL(`https://mumbai.polygonscan.com/tx/${mintNFTTx.hash}`);
+    setTxURL(`https://explorer.apothem.network/txs/${mintNFTTx.hash}`);
     setTxStatus("File addition was successfully!");
     console.log("File preview completed");
   };
@@ -97,7 +125,7 @@ const MintFile = () => {
     // 1. upload File content via NFT.storage
     const metaData = await uploadNFTContent(uploadedFile);
 
-    // 2. Mint a NFT token on BTTC Chain
+    // 2. Mint a NFT token on XDC Chain
     const mintNFTTx = await sendTxToBlockchain(metaData);
 
     // 3. preview the minted nft
@@ -107,7 +135,7 @@ const MintFile = () => {
     // mintReward();
 
     //5. navigate("/explore");
-    navigate.push('/dashboard');
+    navigate.push('/explore');
   };
 
   const getIPFSGatewayURL = (ipfsURL) => {
@@ -120,22 +148,24 @@ const MintFile = () => {
 
   return (
     <Box as="section"  sx={styles.section}>
-      <div className="bg-purple-100 text-4xl text-center text-black font-bold pt-10">
-        <h1> Upload a Video File</h1>
+      <div className="bg-blue-100 text-center text-black text-xl font-bold pt-10 pb-2">
+        <h1> Upload your news</h1>
       </div>
       <div className="flex justify-center bg-blue-100">
+        
         <div className="w-1/2 flex flex-col pb-12 ">
+          <label htmlFor='file' className='text-xl db mb1 text-left font-bold'>Description</label>
         <input
-            placeholder="Give the file a name"
+            placeholder="Brief Description"
             className="mt-5 border rounded p-4 text-xl"
-            onChange={(e) => updateFormInput({ ...formInput, name: e.target.value })}
+            onChange={(e) => updateFormInput({ ...formInput,  description: e.target.value })}
           />
           <br />
 
           <div className="MintNFT text-black text-xl">
             <form>
-              <h3>Select a File</h3>
-              <input type="file" onChange={handleFileUpload} className="text-black mt-2 border rounded  text-xl" />
+              <h3 className='text-xl db mb1 text-left font-bold'> Select a File</h3>
+              <input type="file" onChange={handleFileUpload} className="text-black mt-2 border rounded"/>
             </form>
             {txStatus && <p>{txStatus}</p>}
             
@@ -161,8 +191,8 @@ const MintFile = () => {
 
           </div>
 
-          <button type="button" onClick={(e) => mintNFTFile(e, uploadedFile)} className="font-bold mt-20 bg-purple-700 text-white text-2xl rounded p-4 shadow-lg">
-            Publish File
+          <button type="button" onClick={(e) => mintNFTFile(e, uploadedFile)} className="font-bold mt-20 bg-blue-900 text-white text-2xl rounded p-4 shadow-lg">
+            Publish  News
           </button>
         </div>
       </div>

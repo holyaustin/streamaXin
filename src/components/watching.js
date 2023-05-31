@@ -62,6 +62,14 @@ export default function Watching() {
     alert("This feature is under development because we want to give you the best expereince");
   }
 
+  const getIPFSGatewayURL = (ipfsURL) => {
+    const urlArray = ipfsURL.split("/");
+    console.log("urlArray = ", urlArray);
+    const ipfsGateWayURL = `https://${urlArray[2]}.ipfs.nftstorage.link/${urlArray[3]}`;
+    console.log("ipfsGateWayURL = ", ipfsGateWayURL)
+    return ipfsGateWayURL;
+  };
+
   async function getENSName() {
     const address = owners;
     const RPC2 = "https://eth.llamarpc.com";
@@ -72,7 +80,7 @@ export default function Watching() {
     
   }
 
-  const rpcUrl = "https://matic-mumbai.chainstacklabs.com";
+  const rpcUrl = "https://erpc.apothem.network";
    // const rpcUrl = "localhost";
 
    const { query: vid } = router; 
@@ -104,9 +112,9 @@ export default function Watching() {
       console.log("inside data mapping");
       const tokenUri = await contract.tokenURI(i.tokenId);
       console.log("token Uri is ", tokenUri);
-      const httpUri = tokenUri;
+      const httpUri = getIPFSGatewayURL(tokenUri);
       console.log("Http Uri is ", httpUri);
-      const meta = await axios.get(tokenUri);
+      const meta = await axios.get(httpUri);
       
       //getENSName();
 
@@ -125,12 +133,12 @@ export default function Watching() {
 
       const item = {
         tokenId: i.tokenId.toNumber(),
-        image: httpUri,
+        image: getIPFSGatewayURL(meta.data.image),
         name: filename,
         created: created,
         description: description,
         size: filesize,
-        sharelink: httpUri,
+        sharelink: getIPFSGatewayURL(meta.data.image),
         owner: i.owner.toString(),
         view: count,
       };
@@ -167,7 +175,7 @@ export default function Watching() {
     console.log("vid is ", vid);
 
     try {
-      //setTxStatus("Adding transaction to Polygon Mumbai..");
+      //setTxStatus("Adding transaction to XDC Apothem..");
       const web3Modal = new Web3Modal();
       const connection = await web3Modal.connect();
       const provider = new ethers.providers.Web3Provider(connection);
@@ -179,11 +187,13 @@ export default function Watching() {
       await mintNFTTx.wait();
       return mintNFTTx;
     } catch (error) {
-      setErrorMessage("Failed to send tx to Mumbai.");
+      setErrorMessage("Failed to send tx to Apothem.");
       console.log(error);
     }
  
   };
+
+  
 // NFTPort Function to Mint Milestone
   async function mintViewMilestone() {
     const options = {
@@ -204,6 +214,7 @@ export default function Watching() {
       console.error(error);
     });
   }
+ 
 
   const PosterImage = () => {
     return (
@@ -240,6 +251,7 @@ export default function Watching() {
 {nfts.map((nft, i) => (
     <div key={i} className="shadow rounded-xl overflow-hidden min-w-full " style={responsiveIframe}>
 
+
 <Player
       title={nft.name}
       src={nft.sharelink}
@@ -251,15 +263,16 @@ export default function Watching() {
       priority
 
     />
-
-      {/**
+ 
+ {/**     
       <iframe
         title="video"
         style={responsiveIframe}
         src={`${nft.image}#toolbar=0`}
         className="py-3 object-cover h-full"
       />
- */}
+
+*/}
     </div>
   ))
 }
@@ -347,15 +360,11 @@ export default function Watching() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="chat"
-                    >Video Conference 
+                    >Video Meeting 
                     </a>
                   </button>
                 </div>
-
-            
     </div>
-
-   
 </div>
     </>
       </Box>
