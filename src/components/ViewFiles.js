@@ -29,7 +29,7 @@ export default function ViewFiles() {
     loadfileNFT();
   }, []);
 
-  const rpcUrl = "https://matic-mumbai.chainstacklabs.com";
+  const rpcUrl = "https://erpc.apothem.network";
    // const rpcUrl = "localhost";
 
   async function loadfileNFT() {
