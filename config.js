@@ -1,3 +1,3 @@
 
-  export const fileShareAddress = "0x92b3556042052c12c962bEf9aCcad837405130a8"
+  export const fileShareAddress = "0x7064f88f4840588b78014d6d3f4556FAAdF20893"
   
