@@ -11,8 +11,6 @@ import {
   studioProvider,
 } from '@livepeer/react';
 import Head from "next/head";
-import { AuthProvider, useAuth } from '@w3ui/react-keyring';
-import { UploaderProvider } from '@w3ui/react-uploader';
 import '../assets/css/react-slick.css';
 import 'tailwindcss/tailwind.css';
 import "../styles/globals.css";

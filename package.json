@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3016",
+    "dev": "next dev -p 3014",
     "build": "next build",
     "serve": "next start",
     "export": "next export",
@@ -12,9 +12,6 @@
   "dependencies": {
     "@civic/ethereum-gateway-react": "^0.10.3",
     "@coinbase/wallet-sdk": "^3.4.0",
-    "@fluencelabs/aqua": "^0.7.4-338",
-    "@fluencelabs/aqua-lib": "^0.5.2",
-    "@fluencelabs/fluence": "^0.23.4",
     "@livepeer/react": "^1.5.5",
     "@nomiclabs/hardhat-ethers": "^2.0.3",
     "@nomiclabs/hardhat-waffle": "^2.0.5",
@@ -22,16 +19,14 @@
     "@tableland/sdk": "^2.0.2",
     "@tailwindcss/forms": "^0.3.4",
     "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.3.0",
+    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
-    "@types/jest": "^28.1.7",
-    "@types/node": "^18.7.6",
-    "@types/react": "^18.0.17",
+    "@types/jest": "^29.1.1",
+    "@types/node": "^18.7.23",
+    "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "@types/serve-handler": "^6.1.1",
     "@uauth/js": "^2.2.0",
-    "@w3ui/react-keyring": "^1.0.1",
-    "@w3ui/react-uploader": "^2.1.2",
     "@walletconnect/web3-provider": "^1.7.8",
     "@web3-onboard/coinbase": "^2.0.9",
     "@web3-onboard/core": "^2.5.0",
@@ -40,11 +35,11 @@
     "axios": "^0.27.2",
     "bytes": "^3.1.2",
     "chai": "^4.3.4",
-    "connectkit": "^0.0.2",
+    "connectkit": "1.2.0",
     "dotenv": "^16.0.1",
     "eth-revert-reason": "^1.0.3",
     "ethereum-waffle": "^3.4.0",
-    "ethers": "^5.6.9",
+    "ethers": "^5.7.2",
     "files-from-path": "^0.2.6",
     "format-number": "^3.0.0",
     "framer-motion": "^2.9.1",
@@ -75,8 +70,8 @@
     "serve": "^14.0.1",
     "theme-ui": "^0.3.1",
     "tus-js-client": "^3.0.0",
-    "wagmi": "^0.6.5",
-    "web-vitals": "^2.1.4",
+    "wagmi": "0.11.7",
+    "web-vitals": "^3.0.2",
     "web3": "^1.7.4",
     "web3modal": "^1.9.7"
   },
@@ -90,5 +85,17 @@
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.6",
     "typescript": "^4.9.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

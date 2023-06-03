@@ -70,16 +70,16 @@ export default function Header() {
           <Link href="/explore">
           <a>News-On-Demand</a>
           </Link>
-          <Link href="/publishnews">
+          <Link href="/profile">
           <a>Publish-News</a>
           </Link>
           <Link href="/streamlive">
-          <a>Stream-Live </a>
+          <a>Stream-Token </a>
           </Link>
           <Link href="/videoplayer">
           <a> Video-Player</a>
           </Link>
-          <Link href="https://streamagenic-meeting.vercel.app/" target="_blank">
+          <Link href="https://app.huddle01.com/" target="_blank">
           <a target="_blank">Video-Meeting </a>
           </Link>
         

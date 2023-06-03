@@ -7,7 +7,10 @@ module.exports = {
     hardhat: {
       chainId: 1337
     },
-   
+    xinfin: {
+      url: 'https://erpc.xinfin.network',
+      accounts: [process.env.PRIVATE_KEY],
+    },
     apothem: {
       url: 'https://erpc.apothem.network', 
       accounts: [process.env.PRIVATE_KEY],

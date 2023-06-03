@@ -38,6 +38,10 @@ Deployed to XDC Chain:
 
   <https://explorer.apothem.network/address/xdc7064f88f4840588b78014d6d3f4556faadf20893#transactions>
 
+  https://apothem.xinfinscan.com/tokens/xdcd2d6181276c608ca5208955fb68d27332cccd264/xrc20/xdcd2d6181276c608ca5208955fb68d27332cccd264#token-transfer
+
+  https://apothem.xinfinscan.com/address/xdcd2d6181276c608ca5208955fb68d27332cccd264#transactions
+
  Youtube video link: <https://youtu.be/kZvxCGMPci8>
 
 ## Getting Started
