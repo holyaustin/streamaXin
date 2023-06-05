@@ -36,8 +36,9 @@ Conference meeting: <https://streamagenic-meeting.vercel.app/>
 
 
 Deployed to XDC Chain:
-  XDC apothem deployed Address = "xdc7064f88f4840588b78014d6d3f4556FAAdF20893"
-
+  Genic contract deployed Address = "xdc7064f88f4840588b78014d6d3f4556FAAdF20893"
+  XRC20 Stream Token deployed Address = "xdcD2D6181276c608ca5208955fb68D27332ccCD264"
+  
   <https://explorer.apothem.network/address/xdc7064f88f4840588b78014d6d3f4556faadf20893#transactions>
 
   https://apothem.xinfinscan.com/tokens/xdcd2d6181276c608ca5208955fb68d27332cccd264/xrc20/xdcd2d6181276c608ca5208955fb68d27332cccd264#token-transfer
