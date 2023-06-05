@@ -73,9 +73,7 @@ export default function Header() {
           <Link href="/profile">
           <a>Publish-News</a>
           </Link>
-          <Link href="/streamlive">
-          <a>Stream-Token </a>
-          </Link>
+
           <Link href="/videoplayer">
           <a> Video-Player</a>
           </Link>

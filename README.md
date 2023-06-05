@@ -19,6 +19,8 @@ Backend: Solidity, Node.js
 
 Blockchain deployed to:  XDC Apothem Testnet.
 
+Civic Pass: Integrate Civic Pass CAPTCHA into a dApp for botting prevention during a mint or account creation
+
 ## Description
 
 This project was made using several technologies. The front-end was designed using a server-side-rendering javascript tech known as NextJS. the latest version of Next was used because of how fast it was to build the project.  IPFS / Filecoin's W3UI from Web3.Storage was used to store user's video on their decentralized storage. videos of various news can be viewed on demand. They can share these Videos to anyone through a sharing mechansism that is easy to copy out the sharing IPFS URL.
